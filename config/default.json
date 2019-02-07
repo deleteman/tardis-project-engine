@@ -1,0 +1,23 @@
+{
+	"logging": {
+		"output_files": {
+			"error": "./logs/errors.log"
+		}
+	},
+	"mongoose": {
+		"connection_string": "mongodb://localhost/test"
+	},
+	"clientKeys": {
+		"ttl": 2592000
+	},
+	"redis": {
+		"connectionInfo": {
+			"host": "127.0.0.1",
+			"port": 6379
+		}
+	},
+	"playerstats": {
+		"defaulthp": 10,
+		"speed": 2
+	}
+}
