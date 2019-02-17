@@ -32,10 +32,10 @@ router.post('/', function(req, res, next) {
 
 	let keyName = clientModel.normalizeName(clientInfo.name)
 
-	clientModel.find({unique_name: keyName})
+	clientModel.findOne({unique_name: keyName})
 				.exec((error, foundModel ) => {
 					if(foundModel) {
-						updateModelKey(foundModel[0], res, next)
+						updateModelKey(foundModel, res, next)
 					} else {
 						createNewClient(clientModel, clientInfo, res, next)	
 					}

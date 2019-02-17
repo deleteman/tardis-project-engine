@@ -34,7 +34,7 @@ router.post('/:id', function (req, res, next) {
 	let joinModel = playerInfo 
 	joinModel.game = req.params.id
 
-	const GameStateInstance = new (models.get('gameState'))(playerInfo)
+	const GameStateInstance = new (models.get('gameState'))(joinModel)
 
 	GameStateInstance.save( (err, model) => {
 		if(err) return next(err)
@@ -62,13 +62,6 @@ router.get('/:id/:playername', function (req, res, next) {
 				message: "Game state for player '" +playername+"' and game id: '" + gameid + "' not found"
 			})
 			res.json(model)
-
-			/*model.loadCurrentSceneData((err, fullModel) => {
-				if(err) return next(err)
-				res.json(fullModel)
-			})
-			*/
-
 		})
 })
 
