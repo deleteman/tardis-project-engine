@@ -40,7 +40,14 @@ router.post('/:id', function (req, res, next) {
 	const GameStateInstance = new (models.get('gameState'))(joinModel)
 
 	GameStateInstance.save( (err, model) => {
-		if(err) return next(err)
+		if(err) {
+			if(err.code == 11000) return next({
+				error: true, 
+				code: err.code,
+				message: 'That user is already inside the game'
+			}) 
+			return next(err)
+		}
 		res.json(model)
 	})
 })
