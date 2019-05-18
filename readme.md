@@ -190,7 +190,6 @@ Response:
 | look at [target] | Returns the description of [target] | look at room, look at wooden door |
 | look around | Same as _look at room_ | look around |
 | attack [target] with [item]   | Tries to attack [target] with [item] as long as [item] is part of your inventory   |  attack ogre with big knife|
-|   | /games/:id   |  Join an existing game|  
 | inventory | Returns a list of items in your inventory. You can only have 1 item in your hands and any number inside your bag   |   inventory | 
 | move [direction]  | Move the player in the specified direction (either north, south, east or west)   | move east | 
 | pickup [item]  | Adds the item into your inventory (if possible)   | pikcup lit torch on the left | 
