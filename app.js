@@ -56,11 +56,13 @@ app.use(function(err, req, res, next) {
   let errorObj = {
     error: true,
     msg: err.message,
-    errCode: err.status || 500
+    errorCode: err.errorCode || err.status || 500,
+    full: err
   }
   if(err.trace) {
     errorObj.trace = err.trace
   }
+  console.trace(errorObj)
 
   res.json(errorObj);
 });

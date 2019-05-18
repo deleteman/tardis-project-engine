@@ -2,6 +2,7 @@
  const router = express.Router();
  const models = require("../models")
  const CommandParser = require("../lib/commandParser")
+ const config = require("config")
 
 
 /* 
@@ -13,10 +14,12 @@ POST /games
 */
 router.post('/', function(req, res, next) {
 	let gameInfo = req.body
+	console.log("Creating a new game using: ", gameInfo)
 
 	const GameInstance = new (models.get('game'))(gameInfo)
 
 	GameInstance.save( (err, model) => {
+		console.log(err)
 		if(err) return next(err)
 		res.json(model)
 	})
@@ -45,7 +48,7 @@ router.post('/:id', function (req, res, next) {
 /**
 Returns the game state of a player for a specific game, including the details of the current scene
 */
-router.get('/:id/:playername', function (req, res, next) {
+router.get('/:id/state/:playername', function (req, res, next) {
 	let gameid = req.params.id
 	let playername = req.params.playername
 
@@ -68,25 +71,26 @@ router.get('/:id/:playername', function (req, res, next) {
 /**
 Interaction with a particular scene
 */
-router.post('/:id/:playername/:scene', function(req, res, next) {
+router.post('/:id/:playername/commands', function(req, res, next) {
 
 	let command = req.body
 	command.context = {
 		gameId: req.params.id,
 		playername: req.params.playername,
-		scene: req.params.scene
+		//scene: req.params.scene
 	}
 
 	let parser = new CommandParser(command)
 
 	let commandObj = parser.parse()
 	if(!commandObj) return next({
-		status: 500,
+		status: 400,
+		errorCode: config.get("errorCodes.invalidCommand"),
 		message: "Unknown command"
 	})
 	commandObj.run((err, result) => {
 		if(err) return next(err)
-
+			
 		res.json(result)
 	})
 

@@ -19,5 +19,8 @@
 	"playerstats": {
 		"defaulthp": 10,
 		"speed": 2
+	},
+	"errorCodes": {
+		"invalidCommand": 1
 	}
 }
