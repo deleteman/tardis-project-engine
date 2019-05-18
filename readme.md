@@ -182,7 +182,30 @@ Response:
 }
 ```
 
+## Valid commands
+
+
+| **Command**   | **Description**   | **Example**   |
+|---|---|---|
+| look at [target] | Returns the description of [target] | look at room, look at wooden door |
+| look around | Same as _look at room_ | look around |
+| attack [target] with [item]   | Tries to attack [target] with [item] as long as [item] is part of your inventory   |  attack ogre with big knife|
+|   | /games/:id   |  Join an existing game|  
+| inventory | Returns a list of items in your inventory. You can only have 1 item in your hands and any number inside your bag   |   inventory | 
+| move [direction]  | Move the player in the specified direction (either north, south, east or west)   | move east | 
+| pickup [item]  | Adds the item into your inventory (if possible)   | pikcup lit torch on the left | 
+| use [item] on [target]  | Tries to use an item in your inventory on a specific target (could be an NPC, another item or a door) | use golden key on wooden door | 
+| get [value] | Returns the value of an internal variable (mainly for debug) | get playername, get gameid | 
+
+
 # Starting the project
+
+## Requirements
+To get the API to work, you'll need to have the following services up and running:
+
+* Redis
+* MongoDB
+
 In order to start the game engine, you only have to use the following command:
 
 
