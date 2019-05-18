@@ -140,7 +140,7 @@ Response:
 
 ### Sending a command to the server
 
-POST  /games/:id/:playername/:scene
+POST  /games/:id/:playername/commands
 
 Headers:
 + apikey: 35bca390-330c-11e9-988c-477a3f243006
